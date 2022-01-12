@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    margin: 0;
+    font-size: 16px;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.logo_image {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo_text {
+    color: white;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.logo a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.header{
+    background: #25292E;
+    height: 60px;
+    display: flex;
+}
+
+.header .container{
+    width: 1000px;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.main{
+    padding-top: 20px;
+    margin: 0;
+    /*background: red;*/
+}
+
+.main .container{
+    margin: auto;
+    /*background: blue;*/
+    width: 1000px;
+}
+
+.search_form div {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    width: 500px;
+    height: 40px;
+    background: #ECECEC;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    display: flex;
+}
+
+.search_form img {
+    width: 25px;
+    height: 25px;
+    margin-left: 15px;
+    align-self: center;
+}
+
+.search_form div label input {
+    background: transparent;
+    border: none;
+    flex-grow: 1;
+}
+
+.search_form div label {
+    display: flex;
+    flex-grow: 1;
+}
+
+
+.avatar {
+    width: 250px;
+    height: 250px;
+    border: 3px solid #ECECEC;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 30px;
+}
+
+.profile_and_repos {
+    display: flex;
+}
+
+.profile_and_repos a {
+    text-decoration: none;
+}
+
+.repos-elements {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.repo {
+    background: transparent;
+    width: 350px;
+    height: 100px;
+    border: 1px solid #9A9A9A;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.repo ol {
+    list-style: none;
+}
+
+.profile{
+    margin-right: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile_and_repos a{
+    color: black;
+}
