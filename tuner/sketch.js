@@ -119,7 +119,7 @@ function drawTuner(){
 function drawStartText(){
   fill(50);
   textFont("Arial");
-  textSize(80);
+  textSize(50);
   text(startText, width/2, height/2)
 }
 
