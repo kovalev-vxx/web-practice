@@ -14,6 +14,7 @@ let digitalFont;
 function preload() {
   digitalFont = loadFont('res/DS-DIGII.TTF')
 }
+let startText = "TAP TO START";
 
 function setup() {
   let cnv = createCanvas(400, 400);
@@ -115,14 +116,22 @@ function drawTuner(){
 
 }
 
+function drawStartText(){
+  fill(50);
+  textFont("Arial");
+  textSize(80);
+  text(startText, width/2, height/2)
+}
+
 function draw() {
   background(5)
   noStroke()
+  drawStartText()
   drawText()
   drawTuner()
-
 }
 
 function mousePressed() {
   userStartAudio();
+  startText = ""
 }
