@@ -1,5 +1,5 @@
 const model_url =
-  'https://cdn.jsdelivr.net/gh/ml5js/ml5-data-and-models/models/pitch-detection/crepe/';
+    'https://cdn.jsdelivr.net/gh/ml5js/ml5-data-and-models/models/pitch-detection/crepe/';
 let pitch;
 let mic;
 let freq;
@@ -11,7 +11,6 @@ predictNote()
 let img;
 let angle;
 let digitalFont;
-
 function preload() {
   digitalFont = loadFont('res/DS-DIGII.TTF')
 }
@@ -20,9 +19,10 @@ function setup() {
   let cnv = createCanvas(400, 400);
   angleMode(DEGREES);
   audioContext = getAudioContext();
+  audioContext.suspend();
   mic = new p5.AudioIn();
   mic.start(listening);
-  }
+}
 
 
 function gotPitch(error, frequency) {
@@ -51,10 +51,10 @@ function getNotesList(){
 
 function predictNote(){
   let t_array = notesList.map(
-    item => { return Math.abs(item["freq"] - freq)}
+      item => { return Math.abs(item["freq"] - freq)}
   )
   let diff_array = notesList.map(
-    item => { return (item["freq"] - freq)}
+      item => { return (item["freq"] - freq)}
   )
   let min = Math.min.apply(null, t_array)
   let index = t_array.indexOf(min)
@@ -112,7 +112,7 @@ function drawTuner(){
     fill(0, 255, 0)
   }
   rect(width/2-5, height, 10, -100) //палка
-  
+
 }
 
 function draw() {
@@ -120,5 +120,9 @@ function draw() {
   noStroke()
   drawText()
   drawTuner()
-  
+
+}
+
+function mousePressed() {
+  userStartAudio();
 }
