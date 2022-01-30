@@ -19,7 +19,7 @@ function findUser(username){
     return response
 }
 
-function getReposList(link){
+function request(link){
     const xhr = new XMLHttpRequest();
     xhr.open("GET", link, false);
     xhr.send();
@@ -33,8 +33,9 @@ function getGitHubInfo(json_api){
         const login = json_api["items"][0]["login"]
         const profile_photo = json_api["items"][0]["avatar_url"]
         const profile_url = json_api["items"][0]["html_url"]
-        const repos = getReposList(json_api["items"][0]["repos_url"])
+        const repos = request(json_api["items"][0]["repos_url"])
         const info = {login: login, photo: profile_photo, url: profile_url, repos: repos}
+        // console.log(request("https://api.github.com/repos/kovalev-vxx/ICT_DataBases_2021-2022/languages"))
         draw(info)
         return(info)
     }
@@ -51,7 +52,7 @@ function draw(info) {
     var repos_elements = document.querySelector(".repos-elements")
     let lang_list = {"C":"c","C++":"cpp", "C#":"csharp", "CSS":"css", "Go":"go", "Python":"python", "Haskell":"haskell", "HTML": "html", "Java":"java", "JavaScript":"javascript", "Kotlin":"kotlin", "Lua": "lua", "Php":"php", "R":"r", "Swift":"swift", "Jupyter Notebook": "jupyter"}
     for (var i = 1; i < info.repos.length; i++){
-        let lang = info.repos[i]["language"] ?? ""
+        let lang = Object.keys(request(info.repos[i]["languages_url"]))[0] ?? ""
         let logoPath = "img/logos/none.png"
         if (Object.keys(lang_list).includes(lang)){
             logoPath = `img/logos/${lang_list[lang]}.png`
