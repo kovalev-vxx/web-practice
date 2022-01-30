@@ -1,24 +1,5 @@
 const search_form = document.forms.search_form;
 
-function submitSearchForm(event) {
-    var repos_elements = document.querySelector(".repos-elements")
-    repos_elements.innerHTML = ""
-    event.preventDefault();
-    findUser(search_form.querySelector(".search").value)
-}
-
-search_form.addEventListener("submit", submitSearchForm);
-
-function findUser(username){
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://api.github.com/search/users?q=" + username, false);
-    xhr.send();
-    const response = JSON.parse(xhr.responseText)
-    getGitHubInfo(response)
-    console.log(response)
-    return response
-}
-
 function request(link){
     const xhr = new XMLHttpRequest();
     xhr.open("GET", link, false);
@@ -26,16 +7,25 @@ function request(link){
     return JSON.parse(xhr.responseText)
 }
 
-function getGitHubInfo(json_api){
-    if (json_api["total_count"]===0){
+function submitSearchForm(event) {
+    let repos_elements = document.querySelector(".repos-elements")
+    repos_elements.innerHTML = ""
+    event.preventDefault();
+    getGitHubInfo(search_form.querySelector(".search").value)
+}
+
+search_form.addEventListener("submit", submitSearchForm);
+
+function getGitHubInfo(username){
+    const response = request(`https://api.github.com/search/users?q=${username}`)
+    if (response["total_count"]===0){
         alert("User not found")
     } else {
-        const login = json_api["items"][0]["login"]
-        const profile_photo = json_api["items"][0]["avatar_url"]
-        const profile_url = json_api["items"][0]["html_url"]
-        const repos = request(json_api["items"][0]["repos_url"])
+        const login = response["items"][0]["login"]
+        const profile_photo = response["items"][0]["avatar_url"]
+        const profile_url = response["items"][0]["html_url"]
+        const repos = request(response["items"][0]["repos_url"])
         const info = {login: login, photo: profile_photo, url: profile_url, repos: repos}
-        // console.log(request("https://api.github.com/repos/kovalev-vxx/ICT_DataBases_2021-2022/languages"))
         draw(info)
         return(info)
     }
@@ -47,10 +37,10 @@ function draw(info) {
     profile.href = info.url
 
     let repo_text = document.querySelector(".repos h3")
-    repo_text.innerHTML = ('<h3>Repositories</h3>')
+    repo_text.innerHTML = ('Repositories')
 
     var repos_elements = document.querySelector(".repos-elements")
-    let lang_list = {"C":"c","C++":"cpp", "C#":"csharp", "CSS":"css", "Go":"go", "Python":"python", "Haskell":"haskell", "HTML": "html", "Java":"java", "JavaScript":"javascript", "Kotlin":"kotlin", "Lua": "lua", "Php":"php", "R":"r", "Swift":"swift", "Jupyter Notebook": "jupyter"}
+    let lang_list = {"C":"c","C++":"cpp", "C#":"csharp", "CSS":"css", "Go":"go", "Python":"python", "Haskell":"haskell", "HTML": "html", "Java":"java", "JavaScript":"javascript", "Kotlin":"kotlin", "Lua": "lua", "PHP":"php", "R":"r", "Swift":"swift", "Jupyter Notebook": "jupyter"}
     for (var i = 1; i < info.repos.length; i++){
         let lang = Object.keys(request(info.repos[i]["languages_url"]))[0] ?? ""
         let logoPath = "img/logos/none.png"
@@ -62,14 +52,13 @@ function draw(info) {
         repos_elements.innerHTML += (
             `
             <a href="${url}" class="repo" target="_blank">
+            <img src="${logoPath}" alt="">
             <ol>
             <li>${name}</li>
             <li class="lang">${lang}</li>
             </ol>
-            <img src="${logoPath}" alt="">
             </a>
             `
         )
     }
 }
-
