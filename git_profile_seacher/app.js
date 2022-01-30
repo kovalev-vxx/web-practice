@@ -1,4 +1,5 @@
 const search_form = document.forms.search_form;
+const lang_list = {"C":"c","C++":"cpp", "C#":"csharp", "CSS":"css", "Go":"go", "Python":"python", "Haskell":"haskell", "HTML": "html", "Java":"java", "JavaScript":"javascript", "Kotlin":"kotlin", "Lua": "lua", "PHP":"php", "R":"r", "Swift":"swift", "Jupyter Notebook": "jupyter", "Ruby":"ruby", "TypeScript": "typescript", "Scala":"scala"}
 
 function request(link){
     const xhr = new XMLHttpRequest();
@@ -40,8 +41,7 @@ function draw(info) {
     repo_text.innerHTML = ('Repositories')
 
     let repos_elements = document.querySelector(".repos-elements")
-    let lang_list = {"C":"c","C++":"cpp", "C#":"csharp", "CSS":"css", "Go":"go", "Python":"python", "Haskell":"haskell", "HTML": "html", "Java":"java", "JavaScript":"javascript", "Kotlin":"kotlin", "Lua": "lua", "PHP":"php", "R":"r", "Swift":"swift", "Jupyter Notebook": "jupyter"}
-    for (var i = 1; i < info.repos.length; i++){
+    for (let i = 1; i < info.repos.length; i++){
         let lang = info.repos[i]["language"] ?? Object.keys(request(info.repos[i]["languages_url"]))[0] ?? ""
         let logoPath = "img/logos/none.png"
         if (Object.keys(lang_list).includes(lang)){
