@@ -46,12 +46,10 @@ body {
 .main{
     padding-top: 20px;
     margin: 0;
-    /*background: red;*/
 }
 
 .main .container{
     margin: auto;
-    /*background: blue;*/
     width: 1000px;
 }
 
@@ -116,6 +114,18 @@ body {
     box-sizing: border-box;
     border-radius: 5px;
     margin-bottom: 15px;
+    position:relative;
+    overflow: hidden;
+}
+
+.repo img {
+    width: 100px;
+    height: 100px;
+    padding: 15px;
+    position:absolute;
+    right: 0;
+    bottom: 0;
+    opacity: .5;
 }
 
 .repo ol {
@@ -131,4 +141,8 @@ body {
 
 .profile_and_repos a{
     color: black;
+}
+
+.lang{
+    opacity: .5;
 }
