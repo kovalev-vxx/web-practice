@@ -1,0 +1,51 @@
+.todo{
+    width: 100%;
+    margin-bottom: 20px;
+    background: #f3f3f3;
+}
+
+.todo label{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    cursor: pointer;
+}
+
+
+
+.todo label button:active{
+    background: #15413c;
+}
+
+.todo label span{
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+@media (min-width: 993px) {
+    .fix_create{
+        display: none;
+    }
+}
+.fix_create{
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 0;
+    right: 0;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    background: #3ec5b6;
+    color: white;
+}
+
+.fix_create img{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+}
