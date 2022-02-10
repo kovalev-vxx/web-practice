@@ -99,11 +99,13 @@ body {
 
 .profile_and_repos {
     display: flex;
+    align-items: flex-start;
     margin: auto;
 }
 
 .profile_and_repos a {
     text-decoration: none;
+
 }
 
 .repos-elements {
